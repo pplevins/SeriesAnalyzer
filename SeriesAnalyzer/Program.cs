@@ -4,6 +4,9 @@ using SeriesAnalyzer.Services;
 
 namespace SeriesAnalyzer;
 
+/// <summary>
+/// Endpoint program class for the series analyzer project.
+/// </summary>
 internal class Program
 {
     /// <summary>

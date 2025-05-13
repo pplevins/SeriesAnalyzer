@@ -3,12 +3,21 @@ using SeriesAnalyzer.Services;
 
 namespace SeriesAnalyzer.Menu;
 
+/// <summary>
+/// Supplies the menu of options for the numbers series represented to the user.
+/// </summary>
 internal class SeriesMenu
 {
     private int[] _numbers;
     private readonly IUserInterface _ui;
     private readonly NumberSeriesService _service;
 
+    /// <summary>
+    /// Constructing the series menu used in the program.
+    /// </summary>
+    /// <param name="ui">The user interface for I/O.</param>
+    /// <param name="service">The services class for the options.</param>
+    /// <param name="initialNumbers">The initail series of numbers.</param>
     public SeriesMenu(IUserInterface ui, NumberSeriesService service, int[] initialNumbers)
     {
         _ui = ui;
@@ -16,6 +25,9 @@ internal class SeriesMenu
         _numbers = initialNumbers;
     }
 
+    /// <summary>
+    /// Runs the menu and presenting the services to the user.
+    /// </summary>
     public void Run()
     {
         string choice;
@@ -65,12 +77,20 @@ internal class SeriesMenu
         } while (choice != "j");
     }
 
+    /// <summary>
+    /// Showing the series to the user.
+    /// </summary>
+    /// <param name="title">Title for the series printing.</param>
+    /// <param name="series">The number series.</param>
     private void ShowSeries(string title, int[] series)
     {
         string output = $"{title}\n{string.Join(" ", series)}\n";
         _ui.ShowOutput(output);
     }
 
+    /// <summary>
+    /// Displaing the menu of options.
+    /// </summary>
     private void DisplayMenu()
     {
         _ui.ShowOutput(@"Menu:
