@@ -18,19 +18,12 @@ internal class Program
         var ui = new ConsoleUserInterface();
         var service = new NumberSeriesService();
 
-        try
-        {
-            int[] initialNumbers = args.Length > 0
+        int[] initialNumbers = args.Length > 0
                 ? service.ParseSeries(string.Join(' ', args))
-                : service.ParseSeries(ui.GetInput("Enter series of numbers (e.g.: 1 2 3):"));
+                : [];
 
-            var menu = new SeriesMenu(ui, service, initialNumbers);
-            ui.ShowOutput("Welcome to the Series Analyzer!");
-            menu.Run();
-        }
-        catch (Exception ex)
-        {
-            ui.ShowOutput($"Error: {ex.Message}");
-        }
+        var menu = new SeriesMenu(ui, service, initialNumbers);
+        ui.ShowOutput("Welcome to the Series Analyzer!");
+        menu.Run();
     }
 }
