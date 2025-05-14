@@ -1,0 +1,6 @@
+@SeriesAnalyzer.Api_HostAddress = http://localhost:5136
+
+GET {{SeriesAnalyzer.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
