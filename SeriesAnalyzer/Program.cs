@@ -22,7 +22,7 @@ internal class Program
         {
             int[] initialNumbers = args.Length > 0
                 ? service.ParseSeries(string.Join(' ', args))
-                : service.ParseSeries(ui.GetInput("Enter series of numbers (e.g.: 1 2 3):"));
+                : [];
 
             var menu = new SeriesMenu(ui, service, initialNumbers);
             ui.ShowOutput("Welcome to the Series Analyzer!");

@@ -33,15 +33,34 @@ internal class SeriesMenu
         string choice;
         do
         {
+            while (_numbers.Length == 0)
+            {
+                try
+                {
+                    _numbers = _service.ParseSeries(_ui.GetInput("Enter series of numbers (e.g.: 1 2 3):"));
+                }
+                catch (Exception ex)
+                {
+                    _ui.ShowOutput($"Error: {ex.Message}");
+                }
+            }
+
             DisplayMenu();
             choice = _ui.GetInput("Choose your option:").ToLower();
 
             switch (choice)
             {
                 case "a":
-                    var input = _ui.GetInput("Enter series of numbers (e.g.: 1 2 3):");
-                    _numbers = _service.ParseSeries(input);
-                    _ui.ShowOutput("Series updated successfully!");
+                    try
+                    {
+                        var input = _ui.GetInput("Enter series of numbers (e.g.: 1 2 3):");
+                        _numbers = _service.ParseSeries(input);
+                        _ui.ShowOutput("Series updated successfully!");
+                    }
+                    catch (Exception ex)
+                    {
+                        _ui.ShowOutput($"Error: {ex.Message}");
+                    }
                     break;
                 case "b":
                     ShowSeries("Series in original order:", _numbers);
