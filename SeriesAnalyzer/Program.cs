@@ -9,10 +9,22 @@ internal class Program
     /// <returns>Array of number series.</returns>
     static int[] SetNumberSeries(string[] args)
     {
-        if (args.Length == 0)
-            return EvaluateNumbers(GetSeriesFromUser());
-        else
-            return EvaluateNumbers(args);
+        int[] numbers = [];
+        while (numbers.Length == 0)
+        {
+            try
+            {
+                if (args.Length == 0)
+                    numbers = EvaluateNumbers(GetSeriesFromUser());
+                else
+                    numbers = EvaluateNumbers(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        return numbers;
     }
 
     /// <summary>
@@ -141,7 +153,14 @@ internal class Program
                 {
                     case "a":
                     case "A":
-                        numberSeries = EvaluateNumbers(GetSeriesFromUser());
+                        try
+                        {
+                            numberSeries = EvaluateNumbers(GetSeriesFromUser());
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case "b":
                     case "B":
@@ -204,14 +223,7 @@ internal class Program
     {
         int[] numberSeries;
         Console.WriteLine("Welcome to the Series Analyzer Program!\n");
-        try
-        {
-            numberSeries = SetNumberSeries(args);
-            MenuManager(numberSeries);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        numberSeries = SetNumberSeries(args);
+        MenuManager(numberSeries);
     }
 }
